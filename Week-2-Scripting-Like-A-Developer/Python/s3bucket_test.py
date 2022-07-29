@@ -2,9 +2,9 @@ import unittest
 
 class TestS3(unittest.TestCase):
     def test_bucket_name_value(self):
-        bucket = 'cloudskills92'
+        bucket = 'cloudsk92xzzsa'
         
-        self.assertEqual(bucket, 'cloudskills92')
+        self.assertEqual(bucket, 'cloudskills92xzzsa')
 
     def test_region_value(self):
         region = 'us-east-1'
@@ -12,7 +12,7 @@ class TestS3(unittest.TestCase):
         self.assertEqual(region, 'us-east-1')
     
     def test_bucket_name_is_string(self):
-        bucket = 'cloudskills92'
+        bucket = 'cloudskills92xzzsa'
 
         self.assertTrue(type(bucket), str)
 
