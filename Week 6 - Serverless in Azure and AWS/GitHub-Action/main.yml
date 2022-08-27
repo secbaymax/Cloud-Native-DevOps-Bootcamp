@@ -1,8 +1,12 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
 on: workflow_dispatch
 
 env:
   AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
-  NODE_VERSION: '12.x'                # set this to the node version to use
+  NODE_VERSION: '14.x'                # set this to the node version to use
   RESOURCE_GROUP_NAME: 'AZ-400'
   APP_SERVICE_PLAN: 'cloudskillsjsplan'
   APP_SERVICE: 'cloudskillsjs'
@@ -32,17 +36,18 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Create Azure App Service Plan
-      uses: Azure/cli@1.0.4
+      uses: Azure/cli@v1.0.6
       with:
         inlineScript: az appservice plan create -g ${{ env.RESOURCE_GROUP_NAME }} -n ${{ env.APP_SERVICE_PLAN }} --is-linux
       
     - name: Create Azure App Service
-      uses: Azure/cli@1.0.4
+      uses: Azure/cli@v1.0.6
       with:
-        inlineScript: az webapp create -g ${{ env.RESOURCE_GROUP_NAME }} -p ${{ env.APP_SERVICE_PLAN }} -n ${{ env.APP_SERVICE }} --runtime "NODE|12-lts"
+        inlineScript: az webapp create -g ${{ env.RESOURCE_GROUP_NAME }} -p ${{ env.APP_SERVICE_PLAN }} -n ${{ env.APP_SERVICE }} --runtime "NODE|16-lts"
         
     - name: 'Deploy to Azure WebApp'
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ env.APP_SERVICE }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+        

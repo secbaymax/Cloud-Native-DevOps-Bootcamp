@@ -4,6 +4,7 @@ import sys
 
 # Updated and made code reusable
 
+
 def new_iam_user(username):
     # Create connection to AWS API
     iam_user = boto3.client('iam')
@@ -31,6 +32,7 @@ def new_iam_user(username):
     except:
         print(
             'Users access key was not created. Please confirm you have permissions to utilize programmatic access in AWS and try again')
+
 
 username = sys.argv[1]
 
